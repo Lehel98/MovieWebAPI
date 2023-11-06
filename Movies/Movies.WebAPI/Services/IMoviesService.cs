@@ -9,5 +9,11 @@
 		bool ContainsMovie(Movie movie);
 
 		Movie? AddMovie(Movie movie);
+
+		List<string> GetReviews();
+
+		List<string> GetReviews(int id);
+
+		List<string>? AddReview(int id, string review);
 	}
 }
