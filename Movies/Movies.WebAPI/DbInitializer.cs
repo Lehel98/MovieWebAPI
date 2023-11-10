@@ -6,13 +6,10 @@ namespace Movies.WebAPI
 	{
 		public static void Initialize(MovieDbContext context)
 		{
-			context.Database.EnsureDeleted();
-			context.Database.EnsureCreated();
+			if (context.Movies.Any())
+				return;
 
-			//if (context.Movies.Any())
-			//	return;
-
-			//context.Database.Migrate();		
+			context.Database.Migrate();
 
 			IList<Movie> movies = new List<Movie>()
 			{
