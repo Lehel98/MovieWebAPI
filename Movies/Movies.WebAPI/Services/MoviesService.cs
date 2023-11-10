@@ -42,44 +42,24 @@ namespace Movies.WebAPI.Services
 			return movie;
 		}
 
-		public List<string> GetReviews()
+		public List<Review> GetReviews()
 		{
-			var reviews = new List<string>();
-			foreach (var movie in _context.Movies)
-			{
-				foreach (var review in movie.Reviews)
-				{
-					reviews.Add(review);
-				}
-			}
-
-			return reviews;
+			return _context.Reviews.ToList();
 		}
 
-		public List<string> GetReviews(int id)
+		public List<Review> GetReviews(int id)
 		{
-			var movie = _context.Movies.FirstOrDefault(x => id == x.Id);
-			var reviews = new List<string>();
-			if (movie != null)
-			{
-				foreach (var review in movie.Reviews)
-				{
-					reviews.Add(review);
-				}
-			}
-
-			return reviews;
+			return _context.Reviews.Where(x => x.MovieId == id).ToList();
 		}
 
-		public List<string>? AddReview(int id, string review)
+		public List<Review>? AddReview(int id, string author, string text)
 		{
 			var movie = _context.Movies.FirstOrDefault(x => x.Id == id);
 			if (movie != null)
-			{
-				movie.Reviews.Add(review);
+			{				
 				try
 				{
-					_context.Update(movie);
+					_context.Reviews.Add(new Review { Author = author, Text = text, MovieId = id });
 					_context.SaveChanges();
 				}
 				catch (DbUpdateConcurrencyException)

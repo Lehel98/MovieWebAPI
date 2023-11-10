@@ -15,21 +15,21 @@ namespace Movies.WebAPI.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<IEnumerable<string>> GetReviews()
+		public ActionResult<IEnumerable<Review>> GetReviews()
 		{
 			return _service.GetReviews();
 		}
 
 		[HttpGet("{id}")]
-		public ActionResult<IEnumerable<string>> GetReview(Int32 id)
+		public ActionResult<IEnumerable<Review>> GetReview(Int32 id)
 		{
 			return _service.GetReviews(id);
 		}
 
 		[HttpPost]
-		public ActionResult<IEnumerable<string>> PostReview(int id, string review)
+		public ActionResult<IEnumerable<Review>> PostReview(int id, string author, string review)
 		{
-			var result = _service.AddReview(id, review);
+			var result = _service.AddReview(id, author, review);
 
 			if (result == null)
 			{

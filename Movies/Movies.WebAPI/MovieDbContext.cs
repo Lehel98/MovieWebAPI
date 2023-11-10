@@ -9,5 +9,7 @@ namespace Movies.WebAPI
 		public DbSet<Movie> Movies { get; set; } = null!;
 
 		public DbSet<Actor> Actors { get; set; } = null!;
-    }
+
+		public DbSet<Review> Reviews { get; set; } = null!;
+	}
 }

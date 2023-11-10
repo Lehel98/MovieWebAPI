@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Movies.WebAPI;
+using Movies.WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +12,10 @@ builder.Services.AddDbContext<MovieDbContext>(options =>
 	options.UseLazyLoadingProxies();
 });
 
+builder.Services.AddTransient<IMoviesService, MoviesService>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+	options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

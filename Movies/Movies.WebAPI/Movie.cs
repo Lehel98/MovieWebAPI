@@ -7,7 +7,7 @@ namespace Movies.WebAPI
         public Movie()
         {
 			Actors = new List<Actor>();
-			Reviews = new List<string>();
+			Reviews = new List<Review>();
         }
 
         [Key]
@@ -24,13 +24,15 @@ namespace Movies.WebAPI
 
 		public int ActorId { get; set; }
 
-		public ICollection<Actor> Actors { get; set; } = null!;
+		public virtual ICollection<Actor> Actors { get; set; }
 
 		public Byte[]? Poster { get; set; }
 
 		[Required]
 		public int ImdbRating { get; set; }
 
-		public ICollection<string> Reviews { get; set; } = null!;
+		public int ReviewId { get; set; }
+
+		public virtual ICollection<Review> Reviews { get; set; }
 	}
 }

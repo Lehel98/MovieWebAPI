@@ -10,10 +10,10 @@
 
 		Movie? AddMovie(Movie movie);
 
-		List<string> GetReviews();
+		List<Review> GetReviews();
 
-		List<string> GetReviews(int id);
+		List<Review> GetReviews(int id);
 
-		List<string>? AddReview(int id, string review);
+		List<Review>? AddReview(int id, string author, string text);
 	}
 }
